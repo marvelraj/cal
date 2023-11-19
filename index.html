@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .calculator-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .calculator-container form,
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 18px;
+            margin-right: 10px;
+        }
+
+        input {
+            padding: 8px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator-container">
+        <h1 class="text-center">Welcome to Calculate me!</h1>
+        <div class="container flex flex-col items-center mx-auto m-w-20">
+            <form id="calculatorForm">
+                <label for="num1">Number 1:</label>
+                <input type="text" id="num1" name="num1" required>
+
+                <label for="operator">Operator (+, -, *, /):</label>
+                <input type="text" id="operator" name="operator" required>
+
+                <label for="num2">Number 2:</label>
+                <input type="text" id="num2" name="num2" required>
+
+                <button type="button" onclick="calculate()">Calculate</button>
+                <p id="result"></p>
+            </form>
+        </div>
+
+        <div class="container flex flex-col items-center mx-auto m-w-20">
+            <div class="row">
+                <input class="input" type="text" />
+            </div>
+            <div class="row">
+                <button class="button">C</button>
+                <button class="button">%</button>
+                <button class="button">M+</button>
+                <button class="button">M-</button>
+            </div>
+            <div class="row">
+                <button class="button">7</button>
+                <button class="button">8</button>
+                <button class="button">9</button>
+                <button class="button">*</button>
+            </div>
+            <div class="row">
+                <button class="button">4</button>
+                <button class="button">5</button>
+                <button class="button">6</button>
+                <button class="button">/</button>
+            </div>
+            <div class="row">
+                <button class="button">1</button>
+                <button class="button">2</button>
+                <button class="button">3</button>
+                <button class="button">+</button>
+            </div>
+            <div class="row">
+                <button class="button">0</button>
+                <button class="button">.</button>
+                <button class="button">=</button>
+                <button class="button">-</button>
+            </div>
+        </div>
+
+        <script>
+            function calculate() {
+                const num1 = parseFloat(document.getElementById('num1').value);
+                const operator = document.getElementById('operator').value;
+                const num2 = parseFloat(document.getElementById('num2').value);
+                const resultElement = document.getElementById('result');
+
+                if (isNaN(num1) || isNaN(num2)) {
+                    resultElement.innerText = 'Invalid numbers';
+                    return;
+                }
+
+                let result;
+
+                switch (operator) {
+                    case '+':
+                        result = num1 + num2;
+                        break;
+                    case '-':
+                        result = num1 - num2;
+                        break;
+                    case '*':
+                        result = num1 * num2;
+                        break;
+                    case '/':
+                        if (num2 === 0) {
+                            resultElement.innerText = 'Error: Cannot divide by zero';
+                            return;
+                        }
+                        result = num1 / num2;
+                        break;
+                    default:
+                        resultElement.innerText = 'Invalid operator';
+                        return;
+                }
+
+                resultElement.innerText = `Result: ${result}`;
+            }
+        </script>
+    </div>
+</body>
+
+</html>
